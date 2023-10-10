@@ -18,8 +18,8 @@ class _GameScreenState extends State<GameScreen> {
   // Board Lists
   List<String> displayXO = ['', '', '', '', '', '', '', '', ''];
   List<int> matchedIndexes = [];
+  // attempts and other
   int attempts = 0;
-
   int oScore = 0;
   int xScore = 0;
   int filledBoxes = 0;
@@ -30,6 +30,7 @@ class _GameScreenState extends State<GameScreen> {
   int seconds = maxSeconds;
   Timer? timer;
 
+  //Added a google font
   static var customFontWhite = GoogleFonts.coiny(
     textStyle: const TextStyle(
       color: Colors.white,
@@ -38,6 +39,7 @@ class _GameScreenState extends State<GameScreen> {
     ),
   );
 
+  //timer function
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (_) {
       setState(() {
@@ -184,7 +186,7 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
-  // Function to check the correct combination, by checking the value to the other boxes
+  // Function to check the correct combination, by checking the initial value to the other boxes
   void _checkWinner() {
     // check 1st row
     if (displayXO[0] == displayXO[1] &&
@@ -288,6 +290,7 @@ class _GameScreenState extends State<GameScreen> {
     }
   }
 
+  //updates the score
   void _updateScore(String winner) {
     if (winner == 'O') {
       oScore++;
@@ -297,6 +300,7 @@ class _GameScreenState extends State<GameScreen> {
     winnerFound = true;
   }
 
+  //clears the board
   void _clearBoard() {
     setState(() {
       for (int i = 0; i < 9; i++) {
@@ -308,6 +312,7 @@ class _GameScreenState extends State<GameScreen> {
     filledBoxes = 0;
   }
 
+  //Timer Widget
   Widget _buildTimer() {
     final isRunning = timer == null ? false : timer!.isActive;
 
